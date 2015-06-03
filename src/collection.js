@@ -16,7 +16,7 @@
 
 
 'use strict';
-import {equals, compare, finalField, addField, finalProperty} from './lambda.js';
+import { equals, compare, addField, finalField, finalProperty } from './lambda.js';
 
 
 /**
@@ -30,7 +30,7 @@ export default class Collection {
    * @param {Object} opts The options for the new collection type.
    * @param {function} opts.equals The function used to determine whether two items in the
    * collection are the same.
-   * @param {function} opts.compare The function used to determine whether a given object
+   * @param {function} opts.compare The function used to determine whether a given object 
    * is less than, greater than, or equal to another object in the collection.
    * @constructor
    */
@@ -42,38 +42,34 @@ export default class Collection {
 
   /**
    * Returns the total count of elements in the collection.
-   * @abstract
    */
   count() {}
 
   /**
    * Adds a new value to the collection.
    * @param value The value to add to the collection.
-   * @abstract
    */
   add(value) {}
 
   /**
-   * Removes a given value from the collection. Some collections may require to pass in a
-   * value to remove, some others, like a queue or stack, may remove from the elements
+   * Removes a given value from the collection. Some collections may require to pass in a 
+   * value to remove, some others, like a queue or stack, may remove from the elements 
    * already in the collection.
-   * @abstract
    */
   remove() {}
 
   /**
    * Checks whether a given value is present in the collection.
-   * @param value The value to check from inside of the collection. This method uses the
-   * specified {opts.equals} and {opts.compare} functions that were passed into the
+   * @param value The value to check from inside of the collection. This method uses the 
+   * specified {opts.equals} and {opts.compare} functions that were passed into the 
    * constructor.
-   * @abstract
    */
   contains(value) {}
 }
 
 
 /**
- * Abstract base class declaration for a node type that wraps a value for all node
+ * Abstract base class declaration for a node type that wraps a value for all node 
  * collection types.
  * @class
  */
@@ -81,7 +77,8 @@ export class Node {
 
   /**
    * Creates a new Node object that contains the specified value.
-   * @param value
+   * @param {T} value
+   * @template T
    * @constructor
    */
   constructor(value) {
@@ -100,6 +97,7 @@ export class CustomError extends Error {
   /**
    * Returns a new CustomError with the specified message.
    * @param message
+   * @constructor
    */
   constructor (message) {
     super();
@@ -117,4 +115,9 @@ export class CustomError extends Error {
 
 }
 
+/**
+ * Custom error to signal an invalid operation.
+ * @extends {CustomError}
+ * @class
+ */
 export class InvalidOperationError extends CustomError {}
